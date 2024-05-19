@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>logger.py Authentication</title>
+    </head>
+    <body>
+        <script>
+            function guildedOAuthSignIn() {
+                window.location.href = "https://authlink.app/a/projectloggerpy"
+            }
+            function spotifyOAuthSignIn() {
+                window.location.href = "https://accounts.spotify.com/authorize?client_id=af587b41526945e8a0129cc92888b8f6&response_type=code&redirect_uri=https://projectloggerpy.vercel.app/README.md"
+            }
+            /*
+ * Create form to request access token from Google's OAuth 2.0 server.
+ */
+function oauthSignIn() {
+  // Google's OAuth 2.0 endpoint for requesting an access token
+  var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
+  var form = document.createElement('form');
+  form.setAttribute('method', 'GET'); // Send as a GET request.
+  form.setAttribute('action', oauth2Endpoint);
+
+  // Parameters to pass to OAuth 2.0 endpoint.
+  var params = {'client_id': '503707229687-n7lgg54nt3stiudsbh34g2cnvemq9me2.apps.googleusercontent.com',
+                'redirect_uri': 'https://projectloggerpy.vercel.app/README.md',
+                'response_type': 'token',
+                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                'include_granted_scopes': 'true',
+                'state': 'pass-through value'};
+
+  // Add form parameters as hidden input values.
+  for (var p in params) {
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', p);
+    input.setAttribute('value', params[p]);
+    form.appendChild(input);
+  }
+
+  // Add form to page and submit it to open the OAuth 2.0 endpoint.
+  document.body.appendChild(form);
+  form.submit();
+}
+        </script>
+        <h3>Please choose a verification method below to get access to the logger and documentation.</h3>
+        <p>We do not sell your personal information. This is just to verify you are skin and bones, not a bot trying to get free copies of our project.</p>
+        <p>Our oAuth consent screen has not been verified yet, so you may see a warning screen before you give consent. To bypass, click on 'Advanced'. If you do not want to participate, that's totally fine!</p>
+        <button onclick="oauthSignIn()">Sign in with Google</button>
+        <button onclick="guildedOAuthSignIn()">Sign in with Guilded</button>
+        <button onclick="spotifyOAuthSignIn()">Sign in with Spotify</button>
+    </body>
+</html>
